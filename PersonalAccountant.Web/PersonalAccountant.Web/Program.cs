@@ -1,14 +1,28 @@
-using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Identity;
 using PersonalAccountant.Db;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var services = builder.Services;
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
+
 services.AddControllersWithViews();
+services.AddAuthentication(options =>
+		{
+			options.DefaultAuthenticateScheme = GoogleDefaults.AuthenticationScheme;
+			options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+		})
+	.AddCookie(IdentityConstants.ExternalScheme)
+	.AddGoogle(options =>
+	{
+		options.ClientId = "1089856459789-88nm7u045cipeh35um51rd0nh4jp4boj.apps.googleusercontent.com";
+		options.ClientSecret = "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";
+		options.SignInScheme = IdentityConstants.ExternalScheme;
+	});
 services.AddPersonalAccountantRepositories(connectionString);
+services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
@@ -25,10 +39,12 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+		name: "default",
+		pattern: "{controller=Home}/{action=Index}/{id?}")
+	.RequireAuthorization();
 
 app.Run();

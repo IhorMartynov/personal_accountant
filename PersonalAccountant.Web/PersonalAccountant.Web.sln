@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalAccountant.Db", "PersonalAccountant.Db\PersonalAccountant.Db.csproj", "{EFBA2F5E-86CB-41B4-B2DB-C70A5F91B362}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalAccountant.Db.Contracts", "PersonalAccountant.Db.Contracts\PersonalAccountant.Db.Contracts.csproj", "{A2571CE5-2EDE-40BE-80EB-BD7E1F077260}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalAccountant.Db.Contracts", "PersonalAccountant.Db.Contracts\PersonalAccountant.Db.Contracts.csproj", "{A2571CE5-2EDE-40BE-80EB-BD7E1F077260}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
