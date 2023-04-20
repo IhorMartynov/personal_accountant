@@ -4,31 +4,30 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace PersonalAccountant.Web.Controllers
+namespace PersonalAccountant.Web.Controllers;
+
+public class AccountController : Controller
 {
-	public class AccountController : Controller
+	[AllowAnonymous]
+	[HttpGet]
+	public IActionResult Login()
 	{
-		[AllowAnonymous]
-		[HttpGet]
-		public IActionResult Login()
-		{
-			return RedirectToAction(nameof(HomeController.Index), "Home");
-		}
+		return RedirectToAction(nameof(HomeController.Index), "Home");
+	}
 
-		[AllowAnonymous]
-		[HttpPost]
-		public IActionResult Login(string? returnUrl)
-		{
-			return Challenge(GoogleDefaults.AuthenticationScheme);
-		}
+	[AllowAnonymous]
+	[HttpPost]
+	public IActionResult Login(string? returnUrl)
+	{
+		return Challenge(GoogleDefaults.AuthenticationScheme);
+	}
 
-		[HttpGet]
-		public IActionResult Logout(string? returnUrl)
+	[HttpGet]
+	public IActionResult Logout(string? returnUrl)
+	{
+		return SignOut(new AuthenticationProperties
 		{
-			return SignOut(new AuthenticationProperties
-			{
-				RedirectUri = returnUrl ?? "/",
-			}, IdentityConstants.ExternalScheme);
-		}
+			RedirectUri = returnUrl ?? "/",
+		}, IdentityConstants.ExternalScheme);
 	}
 }

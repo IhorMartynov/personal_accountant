@@ -1,10 +1,15 @@
-﻿@model string
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model string
+
+@inject IViewLocalizer Localizer
 
 @if (string.IsNullOrEmpty(Model))
 {
 	<form method="post" asp-action="Login" asp-controller="Account">
 		<div>
-			<button type="submit" class="btn btn-light">Sign In</button>
+			<button type="submit" class="btn btn-light">@Localizer["Sign In"]</button>
 		</div>
 	</form>
 }
@@ -15,9 +20,9 @@ else
 			@Model
 		</a>
 		<ul class="dropdown-menu">
-			<li><a class="dropdown-item" href="#">Settings</a></li>
+			<li><a class="dropdown-item" href="#">@Localizer["Settings"]</a></li>
 			<li><hr class="dropdown-divider"></li>
-			<li><a class="dropdown-item" asp-controller="Account" asp-action="Logout">Log out</a></li>
+			<li><a class="dropdown-item" asp-controller="Account" asp-action="Logout" asp-route-returnUrl="/">@Localizer["Sign out"]</a></li>
 		</ul>
 	</div>
 }

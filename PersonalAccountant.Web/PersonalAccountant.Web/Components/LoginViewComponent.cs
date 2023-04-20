@@ -12,11 +12,11 @@ namespace PersonalAccountant.Web.Components
 			_contextAccessor = contextAccessor;
 		}
 
-		public async Task<IViewComponentResult> InvokeAsync()
+		public Task<IViewComponentResult> InvokeAsync()
 		{
 			var user = _contextAccessor.HttpContext?.User;
 
-			return View<string>(user?.Identity?.Name);
+			return Task.FromResult<IViewComponentResult>(View<string>(user?.Identity?.Name));
 		}
 	}
 }

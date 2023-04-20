@@ -1,6 +1,5 @@
-using Microsoft.AspNetCore.Authentication.Google;
-using Microsoft.AspNetCore.Identity;
 using PersonalAccountant.Db;
+using PersonalAccountant.Web.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,19 +7,13 @@ var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
 
-services.AddControllersWithViews();
-services.AddAuthentication(options =>
-		{
-			options.DefaultAuthenticateScheme = GoogleDefaults.AuthenticationScheme;
-			options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
-		})
-	.AddCookie(IdentityConstants.ExternalScheme)
-	.AddGoogle(options =>
-	{
-		options.ClientId = "1089856459789-88nm7u045cipeh35um51rd0nh4jp4boj.apps.googleusercontent.com";
-		options.ClientSecret = "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";
-		options.SignInScheme = IdentityConstants.ExternalScheme;
-	});
+services.AddControllersWithViews()
+	.AddMvcLocalization(options => options.ResourcesPath = "Resources");
+
+services.AddApplicationOptions(builder.Configuration);
+
+services.AddAuthenticationServices();
+
 services.AddPersonalAccountantRepositories(connectionString);
 services.AddHttpContextAccessor();
 
@@ -41,6 +34,8 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseLocalization();
 
 app.MapControllerRoute(
 		name: "default",
