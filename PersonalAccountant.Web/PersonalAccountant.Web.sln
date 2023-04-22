@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalAccountant.Db.Contr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{D8CB285F-ECA4-4DBC-8DE2-DFA2612846FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalAccountant.Common", "Core\PersonalAccountant.Common\PersonalAccountant.Common.csproj", "{19D8839B-7D42-468B-A517-1E61A9751E25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalAccountant.Common", "Core\PersonalAccountant.Common\PersonalAccountant.Common.csproj", "{19D8839B-7D42-468B-A517-1E61A9751E25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
