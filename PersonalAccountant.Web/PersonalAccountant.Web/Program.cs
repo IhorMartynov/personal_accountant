@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var services = builder.Services;
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
+var connectionString = builder.Configuration.GetConnectionString("MongoDB")!;
 
 services.AddControllersWithViews()
 	.AddMvcLocalization(options => options.ResourcesPath = "Resources");
@@ -14,8 +14,9 @@ services.AddApplicationOptions(builder.Configuration);
 
 services.AddAuthenticationServices();
 
-services.AddPersonalAccountantRepositories(connectionString);
+services.AddMongoDbRepositories(connectionString, "personal-accountant-database");
 services.AddHttpContextAccessor();
+services.AddDataProtection();
 
 var app = builder.Build();
 
