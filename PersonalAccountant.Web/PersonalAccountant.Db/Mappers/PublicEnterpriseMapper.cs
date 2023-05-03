@@ -6,7 +6,11 @@ namespace PersonalAccountant.Db.Mappers;
 public sealed class PublicEnterpriseMapper : IPublicEnterpriseMapper
 {
     /// <inheritdoc />
-    public PublicEnterprise Map(PublicEnterpriseDto publicEnterpriseDto) =>
-        new(publicEnterpriseDto.Id, publicEnterpriseDto.Name, publicEnterpriseDto.State,
+    public PublicEnterprise Map(PublicEnterpriseDto publicEnterpriseDto)
+    {
+        if (publicEnterpriseDto == null) throw new ArgumentNullException(nameof(publicEnterpriseDto));
+
+        return new PublicEnterprise(publicEnterpriseDto.Id, publicEnterpriseDto.Name, publicEnterpriseDto.State,
             publicEnterpriseDto.City, publicEnterpriseDto.Type);
+    }
 }

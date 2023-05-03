@@ -10,8 +10,8 @@ public sealed class PublicEnterpriseDtoMapper : IPublicEnterpriseDtoMapper
     {
         if (publicEnterprise == null) throw new ArgumentNullException(nameof(publicEnterprise));
 
-        return new(publicEnterprise.Id, publicEnterprise.Name, publicEnterprise.State, publicEnterprise.City,
-            publicEnterprise.Type);
+        return new PublicEnterpriseDto(publicEnterprise.Id, publicEnterprise.Name, publicEnterprise.State,
+            publicEnterprise.City, publicEnterprise.Type);
     }
 
     /// <inheritdoc />
