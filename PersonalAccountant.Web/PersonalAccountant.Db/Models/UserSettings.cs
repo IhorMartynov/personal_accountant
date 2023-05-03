@@ -8,8 +8,20 @@ public sealed record UserSettings(
 	ElectricityAccountSettings ElectricityAccount,
 	WaterAccountSettings WaterAccount);
 
-public sealed record GasAccountSettings(string AccountNumber, string Login, string EncryptedPassword);
+public sealed record GasAccountSettings(
+    string PublicEnterpriseId,
+    string AccountNumber,
+    string Login,
+    string EncryptedPassword);
 
-public sealed record ElectricityAccountSettings(string AccountNumber, string Login, string EncryptedPassword);
+public sealed record ElectricityAccountSettings(
+    string PublicEnterpriseId,
+    string AccountNumber,
+    string Login,
+    string EncryptedPassword);
 
-public sealed record WaterAccountSettings(string AccountNumber, string Login, string EncryptedPassword);
+public sealed record WaterAccountSettings(
+    string PublicEnterpriseId,
+    string AccountNumber,
+    string Login,
+    string EncryptedPassword);

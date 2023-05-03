@@ -3,6 +3,7 @@ using MongoDB.Driver;
 using PersonalAccountant.Db.Contracts.Repositories;
 using PersonalAccountant.Db.Mappers;
 using PersonalAccountant.Db.Repositories;
+using PersonalAccountant.Db.Services;
 
 namespace PersonalAccountant.Db;
 
@@ -27,10 +28,15 @@ public static class ServiceCollectionExtensions
 			return client.GetDatabase(databaseName);
 		});
 
-		services.AddSingleton<IUserSettingsDtoMapper, UserSettingsDtoMapper>()
-			.AddSingleton<IUserSettingsMapper, UserSettingsMapper>();
+        services.AddHostedService<ConfigureMongoDbIndexesService>();
 
-		services.AddTransient<IUserSettingsRepository, UserSettingsRepository>();
+		services.AddSingleton<IUserSettingsDtoMapper, UserSettingsDtoMapper>()
+			.AddSingleton<IUserSettingsMapper, UserSettingsMapper>()
+            .AddSingleton<IPublicEnterpriseDtoMapper, PublicEnterpriseDtoMapper>()
+            .AddSingleton<IPublicEnterpriseMapper, PublicEnterpriseMapper>();
+
+		services.AddTransient<IUserSettingsRepository, UserSettingsRepository>()
+            .AddTransient<IPublicEnterprisesRepository, PublicEnterprisesRepository>();
 
 		return services;
 	}

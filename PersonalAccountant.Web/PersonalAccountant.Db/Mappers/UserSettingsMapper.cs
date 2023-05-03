@@ -25,14 +25,17 @@ internal sealed class UserSettingsMapper : IUserSettingsMapper
 			userSettings.Name,
 			userSettings.Email,
 			new GasAccountSettings(
+				userSettings.GasAccount.PublicEnterpriseId,
 				userSettings.GasAccount.AccountNumber,
 				userSettings.GasAccount.Login,
 				_dataProtector.Protect(userSettings.GasAccount.Password)),
 			new ElectricityAccountSettings(
+                userSettings.ElectricityAccount.PublicEnterpriseId,
 				userSettings.ElectricityAccount.AccountNumber,
 				userSettings.ElectricityAccount.Login,
 				_dataProtector.Protect(userSettings.ElectricityAccount.Password)),
 			new WaterAccountSettings(
+                userSettings.WaterAccount.PublicEnterpriseId,
 				userSettings.WaterAccount.AccountNumber,
 				userSettings.WaterAccount.Login,
 				_dataProtector.Protect(userSettings.WaterAccount.Password)));
