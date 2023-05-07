@@ -3,7 +3,7 @@ using PersonalAccountant.Db.Models;
 
 namespace PersonalAccountant.Db.Mappers;
 
-public sealed class PublicEnterpriseMapper : IPublicEnterpriseMapper
+internal sealed class PublicEnterpriseMapper : IPublicEnterpriseMapper
 {
     /// <inheritdoc />
     public PublicEnterprise Map(PublicEnterpriseDto publicEnterpriseDto)

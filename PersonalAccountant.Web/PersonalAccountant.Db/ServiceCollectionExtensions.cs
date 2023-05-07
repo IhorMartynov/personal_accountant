@@ -1,9 +1,12 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Runtime.CompilerServices;
+using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 using PersonalAccountant.Db.Contracts.Repositories;
 using PersonalAccountant.Db.Mappers;
 using PersonalAccountant.Db.Repositories;
 using PersonalAccountant.Db.Services;
+
+[assembly:InternalsVisibleTo("PersonalAccountant.Db.Tests")]
 
 namespace PersonalAccountant.Db;
 

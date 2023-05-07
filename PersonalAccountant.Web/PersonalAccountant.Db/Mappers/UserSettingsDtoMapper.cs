@@ -14,24 +14,28 @@ internal sealed class UserSettingsDtoMapper : IUserSettingsDtoMapper
 	}
 
 
-	/// <inheritdoc/>
-	public UserSettingsDto Map(UserSettings userSettings)
-		=> new UserSettingsDto(
-			userSettings.Name,
-			userSettings.Email,
-			new GasAccountSettingsDto(
+    /// <inheritdoc/>
+    public UserSettingsDto Map(UserSettings userSettings)
+    {
+        if (userSettings == null) throw new ArgumentNullException(nameof(userSettings));
+
+        return new UserSettingsDto(
+            userSettings.Name,
+            userSettings.Email,
+            new GasAccountSettingsDto(
                 userSettings.GasAccount.PublicEnterpriseId,
-				userSettings.GasAccount.AccountNumber,
-				userSettings.GasAccount.Login,
-				_dataProtector.Unprotect(userSettings.GasAccount.EncryptedPassword)),
-			new ElectricityAccountSettingsDto(
+                userSettings.GasAccount.AccountNumber,
+                userSettings.GasAccount.Login,
+                _dataProtector.Unprotect(userSettings.GasAccount.EncryptedPassword)),
+            new ElectricityAccountSettingsDto(
                 userSettings.ElectricityAccount.PublicEnterpriseId,
-				userSettings.ElectricityAccount.AccountNumber,
-				userSettings.ElectricityAccount.Login,
-				_dataProtector.Unprotect(userSettings.ElectricityAccount.EncryptedPassword)),
-			new WaterAccountSettingsDto(
+                userSettings.ElectricityAccount.AccountNumber,
+                userSettings.ElectricityAccount.Login,
+                _dataProtector.Unprotect(userSettings.ElectricityAccount.EncryptedPassword)),
+            new WaterAccountSettingsDto(
                 userSettings.WaterAccount.PublicEnterpriseId,
-				userSettings.WaterAccount.AccountNumber,
-				userSettings.WaterAccount.Login,
-				_dataProtector.Unprotect(userSettings.WaterAccount.EncryptedPassword)));
+                userSettings.WaterAccount.AccountNumber,
+                userSettings.WaterAccount.Login,
+                _dataProtector.Unprotect(userSettings.WaterAccount.EncryptedPassword)));
+    }
 }
